@@ -84,11 +84,15 @@ The approach used in this project was template matching. After we’ve identifie
     centroids = cat(1, s.Centroid);
 #
 
-![ReadyForOCR](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/a.png)
+<p align="center">
+    <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/a.png" alt="ReadyForOCR" align="middle" width="400" >
+</p>
 
 Then a subroutine, numberItentifier, for template matching is called from the main application (note, the algorithm is inspired by Video Sudoku Solver developed by Teja Muppirala from MathWorks). The template used for the algorithm can be visualized as follows: 
 
-![Template](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/b.png)
+<p align="center">
+    <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/b.png" alt="Template" align="middle" width="400" >
+</p>
 
 The subroutines take the list of centroids, corner points of the sudoku, number of the templates, as well as the original images, it implements the following algorithm: 
 
