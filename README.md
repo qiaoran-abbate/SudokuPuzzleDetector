@@ -9,7 +9,9 @@ This report is written to summarize Sudoku project for class CSCI 631. There are
 The general algorithm of this project can be briefly described in the following steps: 
 1.	Read in file 
 2.	Convert to black and white image using a median filter
-    ![Binarization](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/1.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/1.png" alt="Binarization" align="middle" width="600" >
+    </p>
 3.  Remove noise using morphology
     ![Morphology](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/2.png)
 4.	Find the largest blob in the region and remove everything else
