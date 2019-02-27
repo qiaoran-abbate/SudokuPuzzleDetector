@@ -116,7 +116,7 @@ The subroutines take the list of centroids, corner points of the sudoku, number 
 4. Repeat the above step for all templates
 
 # Improved OCR Confidence
-## nguish between 5 and 6
+## Distinguish between 5 and 6
 The number 5 and 6 can look very similar to each other, however, there is a big difference between even the worst 5 and 6 blobs. That is, 6 blobs all contain as least 1 Euler number, and 5 do not. Thus, the following coded is added: 
 
 #
@@ -163,10 +163,4 @@ Similar to number 5 and 6. Number 1 and 4 always have a low DOC ratio, additiona
 # Possible Future Improvement 
 My algorithm makes 2 assumptions: 
 1. The Sudoku square is the largest region on the image
-    As you can see there are multiple rectangles that are bigger than the sudoku square. As you can see there are multiple rectangles that are bigger than the sudoku square. 
-
-My algorithm checks for the largest region, and it fails to recognize the correct region 
-
-One solution is to only consider regions that are square, but then we will face another problem. King crossword is bigger than sudoku, and it’s square. 
-
-Therefore, we believe the best solution is to isolate each square region and check to see if it contains only 10 edges vertically and horizontally using Hough transform. 
+    As you can see there are multiple rectangles that are bigger than the sudoku square. As you can see there are multiple rectangles that are bigger than the sudoku square. My algorithm checks for the largest region, and it fails to recognize the correct region One solution is to only consider regions that are square, but then we will face another problem. King crossword is bigger than sudoku, and it’s square. Therefore, I believe the best solution is to isolate each square region and check to see if it contains only 10 edges vertically and horizontally using Hough transform. 
