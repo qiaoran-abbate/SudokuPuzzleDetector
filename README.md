@@ -120,12 +120,53 @@ The subroutines take the list of centroids, corner points of the sudoku, number 
 The number 5 and 6 can look very similar to each other, however, there is a big difference between even the worst 5 and 6 blobs. That is, 6 blobs all contain as least 1 Euler number, and 5 do not. Thus, the following coded is added: 
 
 #
-    %If it's a 5 or 6, use the Euler number
+    % If it's a 5 or 6, use the Euler number
     if (LocValue(k,3) == 5 || LocValue(k,3) == 6) && abs(S(5) - S(6)) < 0.1 
-         E = regionprops(N,'EulerNumber');
-    % if the image contain a euler number, then it must be 6, otherwise 5
+        E = regionprops(N,'EulerNumber');
+        % if the image contain a euler number, then it must be 6, otherwise 5
         if ~E(1).EulerNumber
             LocValue(k,3) = 6;
         end
     end
 #
+
+## Distinguish between 1 and 7
+The number 1 and 7 are also very similar in terms of the template response rate. However, the centroid will always be on the number 1 itself well the centroid on the 7 will be not. This means that the centroid on the 1 is 1 while the centroid on the 7 will be a 0. This lead to the addition of the following code: 
+
+#
+    %If it's a 1 or 7, check the centroid position is 0 or 1 
+    if (LocValue(k,3) == 1 || LocValue(k,3) == 7) && abs(S(1) - S(7)) < 0.5
+        R = regionprops(N,'centroid');
+      	% if the centroid does not overlap the image object, then it must be a 7, else 1
+      	if  N(round(R.Centroid(1)), round(R.Centroid(2))) == 1
+                LocValue(k,3) = 1;
+          	end
+     	end
+#
+
+## Distinguish between 1 and 4
+Similar to number 5 and 6. Number 1 and 4 always have a low DOC ratio, additionally, 4 have a Euler number while 1 does not. This lead to the following code: 
+
+#
+    % If it's a 1 or 4, use the Euler number
+      	if (LocValue(k,3) == 1 || LocValue(k,3) == 4) && abs(S(1) - S(4)) < 0.2 
+            E = regionprops(N,'EulerNumber');
+            % if the image contain a euler number, then it must be 4, otherwise 1
+            if ~E(1).EulerNumber
+                LocValue(k,3) = 4;
+            else
+                LocValue(k,3) = 1;
+            end
+    end
+#
+
+# Possible Future Improvement 
+My algorithm makes 2 assumptions: 
+1. The Sudoku square is the largest region on the image
+    As you can see there are multiple rectangles that are bigger than the sudoku square. As you can see there are multiple rectangles that are bigger than the sudoku square. 
+
+My algorithm checks for the largest region, and it fails to recognize the correct region 
+
+One solution is to only consider regions that are square, but then we will face another problem. King crossword is bigger than sudoku, and it’s square. 
+
+Therefore, we believe the best solution is to isolate each square region and check to see if it contains only 10 edges vertically and horizontally using Hough transform. 
