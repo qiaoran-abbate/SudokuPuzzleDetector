@@ -120,12 +120,12 @@ The subroutines take the list of centroids, corner points of the sudoku, number 
 The number 5 and 6 can look very similar to each other, however, there is a big difference between even the worst 5 and 6 blobs. That is, 6 blobs all contain as least 1 Euler number, and 5 do not. Thus, the following coded is added: 
 
 #
-%If it's a 5 or 6, use the Euler number
-if (LocValue(k,3) == 5 || LocValue(k,3) == 6) && abs(S(5) - S(6)) < 0.1 
-     E = regionprops(N,'EulerNumber');
-% if the image contain a euler number, then it must be 6, otherwise 5
-    if ~E(1).EulerNumber
-        LocValue(k,3) = 6;
+    %If it's a 5 or 6, use the Euler number
+    if (LocValue(k,3) == 5 || LocValue(k,3) == 6) && abs(S(5) - S(6)) < 0.1 
+         E = regionprops(N,'EulerNumber');
+    % if the image contain a euler number, then it must be 6, otherwise 5
+        if ~E(1).EulerNumber
+            LocValue(k,3) = 6;
+        end
     end
-end
 #
