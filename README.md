@@ -186,9 +186,14 @@ The sudoku algorithm works perfectively for all images provided within in the te
     * Have multiple square shapes within the image
     * Have black or white backgrounds
     * Have noise from the back side of the newspaper
+    
 However, it does make the assumptions that there is no square that’s bigger than the sudoku within the newspaper.  This can easily be addressed by constructing a DOC that checks the number of Hough lines found within the image, to quality as a Sudoku square, there must be 9 parallel lines and another 9 parallel lines which are perpendicular to the first set. Secondly, the current program assumes that images are not upside down (can be rotated between 0 to 180 degree). However, this can also be easily fixed by running OCR on sudoku square, and when the average response rate is below 80%, try all rotations (90% each time), and pick the orientation with the highest average response rate. 
+
 Through the course of this project, I’ve learned a lot of useful MATLAB function as well imaging chain design techniques. For example, I realized that is it much easier to start designing the project with a big framework in mind and slowly work details into each section. I started out by knowing that I need four big section of my program, such as noise cleaning, rotation, projective transformation, and OCR on numbers. Then I tried different techniques in the order of the framework, display the image, analyzes the performance, and repeat this process until the desired output is achieved. 
+
 Noise cleaning was possible one of the most involved section, I had to binarize the image, get rid of the salt noise, clear the borders if any, locate and retain the largest blob to narrow the search, and then repeat the noise cleaning process on the isolated image. That technique successfully helped me to eliminate the comic squares in image 'SCAN0011.JPG'.
+
 Additionally, the projective transformation is one of the other important technique in the program ensured that straighten the image to perfect level squares, which in turn ensured that template matching algorithm produced the best result. 
+
 To conclude, this project has taught me to break up large problems into small chunks, and able to learn new techniques form the online development community and turn important concept or algorithms into codes, such as template matching. This is exactly the type of attributes a successful software developer should try to acquire. 
 
