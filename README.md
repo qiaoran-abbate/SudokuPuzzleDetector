@@ -90,13 +90,11 @@ Then a subroutine, numberItentifier, for template matching is called from the ma
 
 The subroutines take the list of centroids, corner points of the sudoku, number of the templates, as well as the original images, it implements the following algorithm: 
 
-#
-    1.	Calculate the indices of the blobs: 
-        * % returns the x, y indices of the blob
-        * LocValue = round(2*listOfCentroids)/2;
-    2.	Then initialize the cell with number 0. 
-    3.	Compute the overlapping percentage between the blob and the template (DOC)
-        % returns a binary image containing the objects that over laps the pixel(listOfCentroids(k,1) + s, listOfCentroids(k,2)) with 4 connected component
-        N = bwselect(img,listOfCentroids(k,1) + s ,listOfCentroids(k,2));
+1.	Calculate the indices of the blobs: 
+    * % returns the x, y indices of the blob
+    * LocValue = round(2*listOfCentroids)/2;
+2.	Then initialize the cell with number 0. 
+3.	Compute the overlapping percentage between the blob and the template (DOC)
+    * % returns a binary image containing the objects that over laps the pixel(listOfCentroids(k,1) + s, listOfCentroids(k,2)) with 4 connected component
+    * N = bwselect(img,listOfCentroids(k,1) + s ,listOfCentroids(k,2));
 
-#
