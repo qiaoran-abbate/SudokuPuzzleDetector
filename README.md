@@ -9,4 +9,5 @@ This report is written to summarize Sudoku project for class CSCI 631. There are
 The general algorithm of this project can be briefly described in the following steps: 
 1.	Read in file 
 2.	Convert to black and white image using a median filter
+    
 
