@@ -182,6 +182,7 @@ One way I can think of to solve this problem might be using a dynamic range. For
 
 # Conclusion
 The sudoku algorithm works perfectively for all images provided within in the test case. It handles images that are:
+
     * Rotated to some degree
     * Have multiple square shapes within the image
     * Have black or white backgrounds
