@@ -46,3 +46,59 @@ The general algorithm of this project can be briefly described in the following 
 
 
 # Challenges and Solutions
+## Finding suitable method to convert to black and white image  
+Since some of the test images are sitting on black or white background, the regular im2bw function won’t work so well. In this case, my solution is using a median as the level, and anything above it will be white, while anything below it will be black. This solved the problem of the black and white background. 
+
+#
+    %% convert image to black and white 
+    I = imOriginal;
+    % create the function
+    makebw = @(I) im2bw(I.data,median(double(I.data(:)))/1.3/255);
+    % process the image block by block
+    I = ~blockproc(I,[92 92],makebw); 
+imshow(I);
+
+#
+
+## Finding the right noise removal techniques 
+Removing the noise was a little tricky. Some Sudoku square’s outlines are very close to other lines; thus, we need to separate them. Some Sudoku square’s outline has gaps; thus we need to fill them. After trying a few combinations, here is the solution I’ve found: 
+
+#
+    % disolve small noise in the background 
+    I = bwareaopen(I,100);
+    % Clear the border 
+    I = imclearborder(I);
+    % make sure close parallel lines are not touching each other 
+    I = imopen(I,strel('disk', 3));
+    % make sure gaps within a line are filled 
+    I = imclose(I,strel('disk', 3));
+
+#
+
+# Techniques to Identify Letters: 
+The approach used in this project was template matching. After we’ve identified the perfect sudoku square without any grid or border, we then try to find the connected component which is usually the number blobs, as well as the centroid of each by using region props: 
+
+#
+        % find the connected component and its centroid
+    	CC = bwconncomp(ICropped); 
+    	s = regionprops(CC, 'centroid'); 
+    	centroids = cat(1, s.Centroid);
+
+#
+
+
+Then a subroutine, numberItentifier, for template matching is called from the main application (note, the algorithm is inspired by Video Sudoku Solver developed by Teja Muppirala from MathWorks). The template used for the algorithm can be visualized as follows: 
+
+
+The subroutines take the list of centroids, corner points of the sudoku, number of the templates, as well as the original images, it implements the following algorithm: 
+
+#
+    1.	Calculate the indices of the blobs: 
+        * % returns the x, y indices of the blob
+        * LocValue = round(2*listOfCentroids)/2;
+    2.	Then initialize the cell with number 0. 
+    3.	Compute the overlapping percentage between the blob and the template (DOC)
+        % returns a binary image containing the objects that over laps the pixel(listOfCentroids(k,1) + s, listOfCentroids(k,2)) with 4 connected component
+        N = bwselect(img,listOfCentroids(k,1) + s ,listOfCentroids(k,2));
+
+#
