@@ -93,6 +93,7 @@ Then a subroutine, numberItentifier, for template matching is called from the ma
 The subroutines take the list of centroids, corner points of the sudoku, number of the templates, as well as the original images, it implements the following algorithm: 
 
 ![Degree of Confidence](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/c.png =100*100 )
+<img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/c.png" alt="Degree of Confidence" width="100">
 
 1.	Calculate the indices of the blobs: 
     * % returns the x, y indices of the blob
