@@ -162,10 +162,12 @@ Similar to number 5 and 6. Number 1 and 4 always have a low DOC ratio, additiona
 
 # Possible Future Improvement 
 My algorithm makes 2 assumptions: 
-1. The Sudoku square is the largest region on the image
-    As you can see there are multiple rectangles that are bigger than the sudoku square. As you can see there are multiple rectangles that are bigger than the sudoku square. My algorithm checks for the largest region, and it fails to recognize the correct region One solution is to only consider regions that are square, but then we will face another problem. King crossword is bigger than sudoku, and it’s square. Therefore, I believe the best solution is to isolate each square region and check to see if it contains only 10 edges vertically and horizontally using Hough transform. 
-2. The image dimension is relatively larg
-    Take this image, for example, the dimension is 310*497, it is considerably smaller than the other images we’ve been testing.  During the process of noise cleaning, certain steps of morphology will remove most the details within the image. In this particular case, it fails at the step: 
+
+## The Sudoku square is the largest region on the image
+As you can see there are multiple rectangles that are bigger than the sudoku square. As you can see there are multiple rectangles that are bigger than the sudoku square. My algorithm checks for the largest region, and it fails to recognize the correct region One solution is to only consider regions that are square, but then we will face another problem. King crossword is bigger than sudoku, and it’s square. Therefore, I believe the best solution is to isolate each square region and check to see if it contains only 10 edges vertically and horizontally using Hough transform. 
+
+## The image dimension is relatively larg
+Take this image, for example, the dimension is 310*497, it is considerably smaller than the other images we’ve been testing.  During the process of noise cleaning, certain steps of morphology will remove most the details within the image. In this particular case, it fails at the step: 
 #
     I=imopen(I,strel('disk', 3));
 #
