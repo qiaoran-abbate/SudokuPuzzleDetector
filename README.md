@@ -24,4 +24,6 @@ The general algorithm of this project can be briefly described in the following 
 10.	Clear the border 
     ![Clear Border](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/6.png)
 11.	Skeletonizing the cropped image
-    ![Skeletonization](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/6.png)
+    ![Skeletonization](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/7.png)
+12.	Find the blobs and centrodes on the cropped image 
+    ![Centrode](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/8.png)
