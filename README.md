@@ -27,3 +27,9 @@ The general algorithm of this project can be briefly described in the following 
     ![Skeletonization](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/7.png)
 12.	Find the blobs and centrodes on the cropped image 
     ![Centrode](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/8.png)
+
+13.	For each blob:
+    * Calculate the overlap rate with each template (0 -9) image,
+    * Pick the max response rate as the matching number 
+    * If the DOC is below a certain threshold
+    - Check for Euler number of the value of the centroid to improve result 
