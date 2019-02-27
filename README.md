@@ -108,8 +108,8 @@ The subroutines take the list of centroids, corner points of the sudoku, number 
     * % returns a binary image containing the objects that over laps the pixel(listOfCentroids(k,1) + s, listOfCentroids(k,2)) with 4 connected component
     * N = bwselect(img,listOfCentroids(k,1) + s ,listOfCentroids(k,2));
     
-    The template with the maximum non-zero degrees of confidence will be the chosen match. For example, a letter’s degrees of confidence level across the templates can be represented as follows: 
-    As you can see, the maximum response is found in the second template, which means that the most probable matching for the blob. However, there are times, when the first and second maximum response-rates are too similar, this indicates that the number in the blob is in bad quality and that we not be able to find the best match.  In order to address this issue, a few conditions are added to the OCR algorithm to improve accuracy. See Improved OCR for more details. 
+        The template with the maximum non-zero degrees of confidence will be the chosen match. For example, a letter’s degrees of confidence level across the templates can be represented as follows: 
+        As you can see, the maximum response is found in the second template, which means that the most probable matching for the blob. However, there are times, when the first and second maximum response-rates are too similar, this indicates that the number in the blob is in bad quality and that we not be able to find the best match.  In order to address this issue, a few conditions are added to the OCR algorithm to improve accuracy. See Improved OCR for more details. 
     * If the value is 0, then break out the loop
     * Pick the template with a maximum degree of DOC, and assign its number to the blob 
     * If there are DOC is below a certain threshold, we will run the additional tests. See details in section DOC Details.
