@@ -183,10 +183,10 @@ One way I can think of to solve this problem might be using a dynamic range. For
 # Conclusion
 The sudoku algorithm works perfectively for all images provided within in the test case. It handles images that are:
 
-    * Rotated to some degree
-    * Have multiple square shapes within the image
-    * Have black or white backgrounds
-    * Have noise from the back side of the newspaper
+* Rotated to some degree
+* Have multiple square shapes within the image
+* Have black or white backgrounds
+* Have noise from the back side of the newspaper
     
 However, it does make the assumptions that there is no square that’s bigger than the sudoku within the newspaper.  This can easily be addressed by constructing a DOC that checks the number of Hough lines found within the image, to quality as a Sudoku square, there must be 9 parallel lines and another 9 parallel lines which are perpendicular to the first set. Secondly, the current program assumes that images are not upside down (can be rotated between 0 to 180 degree). However, this can also be easily fixed by running OCR on sudoku square, and when the average response rate is below 80%, try all rotations (90% each time), and pick the orientation with the highest average response rate. 
 
