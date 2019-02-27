@@ -56,7 +56,7 @@ Since some of the test images are sitting on black or white background, the regu
     makebw = @(I) im2bw(I.data,median(double(I.data(:)))/1.3/255);
     % process the image block by block
     I = ~blockproc(I,[92 92],makebw); 
-imshow(I);
+    imshow(I);
 
 #
 
@@ -72,18 +72,16 @@ Removing the noise was a little tricky. Some Sudoku square’s outlines are very
     I = imopen(I,strel('disk', 3));
     % make sure gaps within a line are filled 
     I = imclose(I,strel('disk', 3));
-
 #
 
 # Techniques to Identify Letters: 
 The approach used in this project was template matching. After we’ve identified the perfect sudoku square without any grid or border, we then try to find the connected component which is usually the number blobs, as well as the centroid of each by using region props: 
 
 #
-        % find the connected component and its centroid
-    	CC = bwconncomp(ICropped); 
-    	s = regionprops(CC, 'centroid'); 
-    	centroids = cat(1, s.Centroid);
-
+    % find the connected component and its centroid
+    CC = bwconncomp(ICropped); 
+    s = regionprops(CC, 'centroid'); 
+    centroids = cat(1, s.Centroid);
 #
 
 
