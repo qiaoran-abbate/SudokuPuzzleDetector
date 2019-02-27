@@ -9,5 +9,19 @@ This report is written to summarize Sudoku project for class CSCI 631. There are
 The general algorithm of this project can be briefly described in the following steps: 
 1.	Read in file 
 2.	Convert to black and white image using a median filter
-    
-
+    ![Binarization](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/1.png)
+3.  Remove noise using morphology
+    ![Morphology](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/2.png)
+4.	Find the largest blob in the region and remove everything else
+    ![Detecting Blobs](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/3.png)
+5.	Rotate the image using Hough transform 
+6.	Calculate the closest outline of the sudoku 
+7.	Outline the sudoku square on the original image (linear interpolation) 
+    ![Linear interpolation](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/4.png)
+8.	Perform projective transformation using the corner point of the sudoku
+9.	Crop the sudoku square out of the image
+    ![Harris Corners](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/5.png)
+10.	Clear the border 
+    ![Clear Border](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/6.png)
+11.	Skeletonizing the cropped image
+    ![Skeletonization](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/6.png)
