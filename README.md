@@ -32,8 +32,7 @@ The general algorithm of this project can be briefly described in the following 
     * Pick the max response rate as the matching number 
     * If the DOC is below a certain threshold, then check for Euler number of the value of the centroid to improve result     
 14.	Print out the result
-
-#
+    #
     4     0     0     0     2     3     0     7     0
     0     0     3     0     0     0     4     0     6
     9     0     0     0     7     4     2     0     0
@@ -43,5 +42,7 @@ The general algorithm of this project can be briefly described in the following 
     0     0     2     3     9     0     0     0     7
     6     0     4     0     0     0     5     0     0
     0     3     0     4     5     0     6     0     0
-#
+    #
 
+
+# Challenges and Solutions
