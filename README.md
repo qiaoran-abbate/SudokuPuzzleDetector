@@ -1,7 +1,9 @@
-# SudokuPuzzleDetector
-Detecting Sudoku Puzzle on new-papers using computer vision. 
-Download all files including TEST IMAGE, and double click to run "SudokuProject_Li_Qiaoran_MAIN.m" with Matlab. 
-
+## Steps to Test the SudokuPuzzleDetector: 
+1. Install MATLAB and Computer Vision ToolBox plugin
+2. Git clone the SudokuPuzzleDetector Repository 
+3. On your machine, navigate to the newly cloned folder 
+4. Double click to run "SudokuProject_Li_Qiaoran_MAIN.m" in Matlab 
+--- 
 # Introduction
 This report is written to summarize Sudoku project for class CSCI 631. There are five sections to this report, which are General Algorithm, Challenges and Solutions, Improved OCR Confidence, Possible Feature Improvement, and Conclusion. In General Algorithm, you will find the overall flow and design of the program. In Challenges and Solutions, you will find the roadblocks I’ve encountered in the project and how I solved them. In Improved OCR Confidence, I will explain in detail how I got the program to work perfectly for all input images. In Future Improvement, I noted two areas that can be improved when the need arises.  Lastly, I summarized, what I’ve learned from the project and the course in general. 
 
@@ -9,24 +11,40 @@ This report is written to summarize Sudoku project for class CSCI 631. There are
 The general algorithm of this project can be briefly described in the following steps: 
 1.	Read in file 
 2.	Convert to black and white image using a median filter
-    ![Binarization](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/1.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/1.png" alt="Binarization" align="middle" width="600" >
+    </p>
 3.  Remove noise using morphology
-    ![Morphology](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/2.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/2.png" alt="Morphology" align="middle" width="600" >
+    </p>
 4.	Find the largest blob in the region and remove everything else
-    ![Detecting Blobs](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/3.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/3.png" alt="Detecting Blobs" align="middle" width="600" >
+    </p>
 5.	Rotate the image using Hough transform 
 6.	Calculate the closest outline of the sudoku 
 7.	Outline the sudoku square on the original image (linear interpolation) 
-    ![Linear interpolation](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/4.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/4.png" alt="Linear interpolation" align="middle" width="600" >
+    </p>
 8.	Perform projective transformation using the corner point of the sudoku
 9.	Crop the sudoku square out of the image
-    ![Harris Corners](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/5.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/5.png" alt="Harris Corners" align="middle" width="600" >
+    </p>
 10.	Clear the border 
-    ![Clear Border](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/6.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/6.png" alt="Clear Border" align="middle" width="600" >
+    </p>
 11.	Skeletonizing the cropped image
-    ![Skeletonization](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/7.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/7.png" alt="Skeletonization" align="middle" width="600" >
+    </p>
 12.	Find the blobs and centrodes on the cropped image 
-    ![Centrode](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/8.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/8.png" alt="Centrode" align="middle" width="600" >
+    </p>
 13.	For each blob:
     * Calculate the overlap rate with each template (0 -9) image,
     * Pick the max response rate as the matching number 
@@ -179,3 +197,22 @@ Take this image, for example, the dimension is 310*497, it is considerably small
 #
 
 One way I can think of to solve this problem might be using a dynamic range. For example, instead of hard-coding 3, I might use 1% of the region blob instead. 
+
+# Conclusion
+The sudoku algorithm works perfectively for all images provided within in the test case. It handles images that are:
+
+* Rotated to some degree
+* Have multiple square shapes within the image
+* Have black or white backgrounds
+* Have noise from the back side of the newspaper
+    
+However, it does make the assumptions that there is no square that’s bigger than the sudoku within the newspaper.  This can easily be addressed by constructing a DOC that checks the number of Hough lines found within the image, to quality as a Sudoku square, there must be 9 parallel lines and another 9 parallel lines which are perpendicular to the first set. Secondly, the current program assumes that images are not upside down (can be rotated between 0 to 180 degree). However, this can also be easily fixed by running OCR on sudoku square, and when the average response rate is below 80%, try all rotations (90% each time), and pick the orientation with the highest average response rate. 
+
+Through the course of this project, I’ve learned a lot of useful MATLAB function as well imaging chain design techniques. For example, I realized that is it much easier to start designing the project with a big framework in mind and slowly work details into each section. I started out by knowing that I need four big section of my program, such as noise cleaning, rotation, projective transformation, and OCR on numbers. Then I tried different techniques in the order of the framework, display the image, analyzes the performance, and repeat this process until the desired output is achieved. 
+
+Noise cleaning was possible one of the most involved section, I had to binarize the image, get rid of the salt noise, clear the borders if any, locate and retain the largest blob to narrow the search, and then repeat the noise cleaning process on the isolated image. That technique successfully helped me to eliminate the comic squares in image 'SCAN0011.JPG'.
+
+Additionally, the projective transformation is one of the other important technique in the program ensured that straighten the image to perfect level squares, which in turn ensured that template matching algorithm produced the best result. 
+
+To conclude, this project has taught me to break up large problems into small chunks, and able to learn new techniques form the online development community and turn important concept or algorithms into codes, such as template matching. This is exactly the type of attributes a successful software developer should try to acquire. 
+
