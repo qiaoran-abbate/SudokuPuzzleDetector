@@ -1,6 +1,7 @@
 # How to Test the SudokuPuzzleDetector Code
 * Install MATLAB and Computer Vision ToolBox plugin
-* Download all files including TEST IMAGE
+* Git clone the SudokuPuzzleDetector Repository 
+* On your machine, navigate to the newly cloned folder 
 * Double click to run "SudokuProject_Li_Qiaoran_MAIN.m" in Matlab 
 
 # Introduction
