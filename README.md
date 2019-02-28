@@ -13,22 +13,36 @@ The general algorithm of this project can be briefly described in the following 
         <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/1.png" alt="Binarization" align="middle" width="600" >
     </p>
 3.  Remove noise using morphology
-    ![Morphology](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/2.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/2.png" alt="Morphology" align="middle" width="600" >
+    </p>
 4.	Find the largest blob in the region and remove everything else
-    ![Detecting Blobs](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/3.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/3.png" alt="Detecting Blobs" align="middle" width="600" >
+    </p>
 5.	Rotate the image using Hough transform 
 6.	Calculate the closest outline of the sudoku 
 7.	Outline the sudoku square on the original image (linear interpolation) 
-    ![Linear interpolation](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/4.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/4.png" alt="Linear interpolation" align="middle" width="600" >
+    </p>
 8.	Perform projective transformation using the corner point of the sudoku
 9.	Crop the sudoku square out of the image
-    ![Harris Corners](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/5.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/5.png" alt="Harris Corners" align="middle" width="600" >
+    </p>
 10.	Clear the border 
-    ![Clear Border](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/6.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/6.png" alt="Clear Border" align="middle" width="600" >
+    </p>
 11.	Skeletonizing the cropped image
-    ![Skeletonization](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/7.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/7.png" alt="Skeletonization" align="middle" width="600" >
+    </p>
 12.	Find the blobs and centrodes on the cropped image 
-    ![Centrode](https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/8.png)
+    <p align="center">
+        <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/8.png" alt="Centrode" align="middle" width="600" >
+    </p>
 13.	For each blob:
     * Calculate the overlap rate with each template (0 -9) image,
     * Pick the max response rate as the matching number 
