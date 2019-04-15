@@ -185,7 +185,7 @@ My algorithm makes 2 assumptions:
 <p align="center">
     <img src="https://github.com/qiaoranli/SudokuPuzzleDetector/blob/master/doc_images/I.png" alt="problem1" align="middle" width="500" >
 </p>
-As you can see there are multiple rectangles that are bigger than the sudoku square. As you can see there are multiple rectangles that are bigger than the sudoku square. My algorithm checks for the largest region, and it fails to recognize the correct region One solution is to only consider regions that are square, but then we will face another problem. King crossword is bigger than sudoku, and it’s square. Therefore, I believe the best solution is to isolate each square region and check to see if it contains only 10 edges vertically and horizontally using Hough transform. 
+As you can see there are multiple rectangles that are bigger than the sudoku square. My algorithm checks for the largest region, and it fails to recognize the correct region One solution is to only consider regions that are square, but then we will face another problem. King crossword is bigger than sudoku, and it’s square. Therefore, I believe the best solution is to isolate each square region and check to see if it contains only 10 edges vertically and horizontally using Hough transform. 
 
 ## The image dimension is relatively large
 <p align="center">
